@@ -16,6 +16,16 @@ const toast = document.getElementById("toast");
 // ===== State =====
 let toastTimer = null;
 
+// ===== URL Validator =====
+function isValidURL(str) {
+  try {
+    const url = new URL(str);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 // ===== Error Helpers =====
 function showError(message) {
   errorMsg.textContent = message;
@@ -54,6 +64,11 @@ function generateQR() {
 
   if (!text) {
     showError("Please enter some text or a URL.");
+    return;
+  }
+
+  if (!isValidURL(text)) {
+    showError("Please enter a valid URL (must start with http:// or https://)");
     return;
   }
 
