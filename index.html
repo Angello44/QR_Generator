@@ -7,116 +7,148 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="container" role="main">
-      <div class="card" aria-label="QR Code Generator">
-        <h1 class="title">QR Code Generator</h1>
-
-        <div class="form-group">
-          <label for="qr-input" class="form-label">URL</label>
-          <input
-            type="text"
-            id="qr-input"
-            class="form-input"
-            placeholder="https://example.com"
-            aria-label="Enter a URL to generate QR code"
-            autocomplete="off"
-            spellcheck="false"
-          />
+    <div
+      id="welcome-screen"
+      class="welcome-screen"
+      role="dialog"
+      aria-label="Welcome screen"
+    >
+      <div class="welcome-content">
+        <div class="welcome-icon">🔳</div>
+        <h1 class="welcome-title">QR Generator</h1>
+        <p class="welcome-subtitle">
+          Ubah link jadi QR Code dalam hitungan detik
+        </p>
+        <div class="welcome-features">
+          <div class="welcome-feature-item">⚡ Generate Instan</div>
+          <div class="welcome-feature-item">💾 Simpan ke Galeri</div>
+          <div class="welcome-feature-item">📤 Bagikan Langsung</div>
         </div>
-
-        <div class="form-group">
-          <label for="qr-size" class="form-label">Size</label>
-          <select
-            id="qr-size"
-            class="form-select"
-            aria-label="Select QR code size"
-          >
-            <option value="128">Small (128×128)</option>
-            <option value="256" selected>Medium (256×256)</option>
-            <option value="512">Large (512×512)</option>
-          </select>
-        </div>
-
-        <div class="color-row">
-          <div class="color-group">
-            <label for="fg-color" class="form-label">Foreground</label>
-            <input
-              type="color"
-              id="fg-color"
-              value="#000000"
-              aria-label="Foreground color"
-              class="color-picker"
-            />
-          </div>
-          <div class="color-group">
-            <label for="bg-color" class="form-label">Background</label>
-            <input
-              type="color"
-              id="bg-color"
-              value="#ffffff"
-              aria-label="Background color"
-              class="color-picker"
-            />
-          </div>
-        </div>
-
-        <div
-          id="error-msg"
-          class="error-msg hidden"
-          role="alert"
-          aria-live="polite"
-        ></div>
-
-        <div class="btn-row">
-          <button
-            id="generate-btn"
-            class="btn btn-primary"
-            aria-label="Generate QR Code"
-          >
-            <span class="btn-text">Generate QR</span>
-            <span class="btn-spinner" aria-hidden="true"></span>
-          </button>
-          <button
-            id="clear-btn"
-            class="btn btn-ghost"
-            aria-label="Clear input and QR code"
-          >
-            Clear
-          </button>
-        </div>
-
-        <div
-          id="qr-container"
-          class="qr-container"
-          aria-label="Generated QR code"
-          aria-live="polite"
-        ></div>
-
-        <div class="action-row">
-          <button
-            id="download-btn"
-            class="btn btn-secondary hidden"
-            aria-label="Download QR code as PNG"
-          >
-            ⬇ Download
-          </button>
-          <button
-            id="share-btn"
-            class="btn btn-secondary hidden"
-            aria-label="Share QR code"
-          >
-            ↗ Share
-          </button>
-        </div>
-
-        <div class="history-section">
-          <h2 class="history-title">Recent History</h2>
-          <div id="history-list" class="history-list">
-            <p class="history-empty">No history yet.</p>
-          </div>
-        </div>
+        <button
+          id="welcome-btn"
+          class="btn welcome-btn"
+          aria-label="Mulai menggunakan QR Generator"
+        >
+          Mulai Sekarang
+        </button>
+        <p class="welcome-skip">
+          atau tunggu <span id="welcome-countdown">3</span> detik
+        </p>
       </div>
-    </main>
+    </div>
+
+    <div id="app-wrapper" class="app-wrapper app-hidden">
+      <main class="container" role="main">
+        <div class="card" aria-label="QR Code Generator">
+          <h1 class="title">QR Code Generator</h1>
+
+          <div class="form-group">
+            <label for="qr-input" class="form-label">URL</label>
+            <input
+              type="text"
+              id="qr-input"
+              class="form-input"
+              placeholder="https://example.com"
+              aria-label="Enter a URL to generate QR code"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="qr-size" class="form-label">Size</label>
+            <select
+              id="qr-size"
+              class="form-select"
+              aria-label="Select QR code size"
+            >
+              <option value="128">Small (128×128)</option>
+              <option value="256" selected>Medium (256×256)</option>
+              <option value="512">Large (512×512)</option>
+            </select>
+          </div>
+
+          <div class="color-row">
+            <div class="color-group">
+              <label for="fg-color" class="form-label">Foreground</label>
+              <input
+                type="color"
+                id="fg-color"
+                value="#ffffff"
+                aria-label="Foreground color"
+                class="color-picker"
+              />
+            </div>
+            <div class="color-group">
+              <label for="bg-color" class="form-label">Background</label>
+              <input
+                type="color"
+                id="bg-color"
+                value="#1a1a2e"
+                aria-label="Background color"
+                class="color-picker"
+              />
+            </div>
+          </div>
+
+          <div
+            id="error-msg"
+            class="error-msg hidden"
+            role="alert"
+            aria-live="polite"
+          ></div>
+
+          <div class="btn-row">
+            <button
+              id="generate-btn"
+              class="btn btn-primary"
+              aria-label="Generate QR Code"
+            >
+              <span class="btn-text">Generate QR</span>
+              <span class="btn-spinner" aria-hidden="true"></span>
+            </button>
+            <button
+              id="clear-btn"
+              class="btn btn-ghost"
+              aria-label="Clear input and QR code"
+            >
+              Clear
+            </button>
+          </div>
+
+          <div
+            id="qr-container"
+            class="qr-container"
+            aria-label="Generated QR code"
+            aria-live="polite"
+          ></div>
+
+          <div class="action-row">
+            <button
+              id="download-btn"
+              class="btn btn-secondary hidden"
+              aria-label="Download QR code as PNG"
+            >
+              ⬇ Download
+            </button>
+            <button
+              id="share-btn"
+              class="btn btn-secondary hidden"
+              aria-label="Share QR code"
+            >
+              ↗ Share
+            </button>
+          </div>
+
+          <div class="history-section">
+            <h2 class="history-title">Recent History</h2>
+            <div id="history-list" class="history-list">
+              <p class="history-empty">No history yet.</p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
 
     <div id="toast" class="toast" aria-live="polite" role="status"></div>
 

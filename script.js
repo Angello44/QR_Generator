@@ -1,4 +1,9 @@
-import { logQREvent, saveQRHistory, getQRHistory } from "./firebase.js";
+import {
+  logQREvent,
+  saveQRHistory,
+  getQRHistory,
+  deleteQRHistory,
+} from "./firebase.js";
 
 // ===== DOM References =====
 const qrInput = document.getElementById("qr-input");
@@ -12,6 +17,32 @@ const shareBtn = document.getElementById("share-btn");
 const qrContainer = document.getElementById("qr-container");
 const errorMsg = document.getElementById("error-msg");
 const toast = document.getElementById("toast");
+
+// ===== Welcome Screen =====
+const welcomeScreen = document.getElementById("welcome-screen");
+const welcomeBtn = document.getElementById("welcome-btn");
+const appWrapper = document.getElementById("app-wrapper");
+const countdownEl = document.getElementById("welcome-countdown");
+
+function dismissWelcome() {
+  welcomeScreen.classList.add("hide");
+  appWrapper.classList.remove("app-hidden");
+}
+
+let countdownVal = 3;
+const countdownTimer = setInterval(() => {
+  countdownVal--;
+  if (countdownEl) countdownEl.textContent = countdownVal;
+  if (countdownVal <= 0) {
+    clearInterval(countdownTimer);
+    dismissWelcome();
+  }
+}, 1000);
+
+welcomeBtn.addEventListener("click", () => {
+  clearInterval(countdownTimer);
+  dismissWelcome();
+});
 
 // ===== State =====
 let toastTimer = null;
@@ -108,6 +139,40 @@ function generateQR() {
     generateBtn.disabled = false;
     downloadBtn.classList.remove("hidden");
     shareBtn.classList.remove("hidden");
+
+    // Apply fg color as border + glow on the QR box
+    const qrBox =
+      qrContainer.querySelector(".qr-box") || qrContainer.firstElementChild;
+    if (qrBox) {
+      // Convert hex to rgba for glow (50% opacity)
+      const r = parseInt(fg.slice(1, 3), 16);
+      const g = parseInt(fg.slice(3, 5), 16);
+      const b = parseInt(fg.slice(5, 7), 16);
+      qrBox.style.setProperty("--qr-fg-color", `rgba(${r},${g},${b},0.7)`);
+      qrBox.style.setProperty("--qr-glow-color", `rgba(${r},${g},${b},0.35)`);
+    }
+
+    // Make QR background transparent (remove bg color pixels from canvas)
+    const canvas = getCanvas();
+    if (canvas) {
+      const ctx = canvas.getContext("2d");
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      const bgR = parseInt(bg.slice(1, 3), 16);
+      const bgG = parseInt(bg.slice(3, 5), 16);
+      const bgB = parseInt(bg.slice(5, 7), 16);
+      for (let i = 0; i < data.length; i += 4) {
+        if (
+          Math.abs(data[i] - bgR) < 10 &&
+          Math.abs(data[i + 1] - bgG) < 10 &&
+          Math.abs(data[i + 2] - bgB) < 10
+        ) {
+          data[i + 3] = 0;
+        }
+      }
+      ctx.putImageData(imageData, 0, 0);
+    }
+
     logQREvent("qr_generated", {
       input_length: text.length,
       qr_size: size,
@@ -209,10 +274,11 @@ async function loadHistory() {
         ? item.createdAt.toDate()
         : new Date(item.createdAt);
       const formatted = `${String(date.getDate()).padStart(2, "0")}/${String(date.getMonth() + 1).padStart(2, "0")}/${date.getFullYear()} ${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
-      return `<div class="history-item">
+      return `<div class="history-item" data-id="${item.id}">
       <span class="history-item-text" title="${item.text}">${truncated}</span>
       <span class="history-item-meta">${item.size}px &bull; ${formatted}</span>
       <button class="history-reuse-btn" data-text="${item.text.replace(/"/g, "&quot;")}" data-size="${item.size}" data-fg="${item.fgColor}" data-bg="${item.bgColor}">&#x21BA; Reuse</button>
+      <button class="history-delete-btn" data-id="${item.id}" aria-label="Hapus history">🗑</button>
     </div>`;
     })
     .join("");
@@ -224,6 +290,14 @@ async function loadHistory() {
       fgColor.value = btn.dataset.fg;
       bgColor.value = btn.dataset.bg;
       generateQR();
+    });
+  });
+
+  // Attach delete button listeners
+  historyList.querySelectorAll(".history-delete-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      await deleteQRHistory(btn.dataset.id);
+      await loadHistory();
     });
   });
 }
