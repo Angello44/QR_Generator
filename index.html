@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QR Code Generator</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
+    <!-- Welcome Screen (keep exactly as-is from original) -->
     <div
       id="welcome-screen"
       class="welcome-screen"
@@ -14,7 +19,287 @@
       aria-label="Welcome screen"
     >
       <div class="welcome-content">
-        <div class="welcome-icon">🔳</div>
+        <div class="welcome-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 100 100"
+            width="90"
+            height="90"
+            aria-hidden="true"
+          >
+            <!-- Top-left finder pattern -->
+            <rect
+              x="5"
+              y="5"
+              width="30"
+              height="30"
+              rx="4"
+              fill="none"
+              stroke="url(#qrGrad)"
+              stroke-width="4"
+            />
+            <rect
+              x="13"
+              y="13"
+              width="14"
+              height="14"
+              rx="2"
+              fill="url(#qrGrad)"
+            />
+            <!-- Top-right finder pattern -->
+            <rect
+              x="65"
+              y="5"
+              width="30"
+              height="30"
+              rx="4"
+              fill="none"
+              stroke="url(#qrGrad)"
+              stroke-width="4"
+            />
+            <rect
+              x="73"
+              y="13"
+              width="14"
+              height="14"
+              rx="2"
+              fill="url(#qrGrad)"
+            />
+            <!-- Bottom-left finder pattern -->
+            <rect
+              x="5"
+              y="65"
+              width="30"
+              height="30"
+              rx="4"
+              fill="none"
+              stroke="url(#qrGrad)"
+              stroke-width="4"
+            />
+            <rect
+              x="13"
+              y="73"
+              width="14"
+              height="14"
+              rx="2"
+              fill="url(#qrGrad)"
+            />
+            <!-- Data modules -->
+            <rect
+              x="43"
+              y="5"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.9"
+            />
+            <rect
+              x="55"
+              y="5"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.7"
+            />
+            <rect
+              x="43"
+              y="17"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.8"
+            />
+            <rect
+              x="43"
+              y="29"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.9"
+            />
+            <rect
+              x="55"
+              y="29"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.6"
+            />
+            <rect
+              x="5"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.8"
+            />
+            <rect
+              x="17"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.7"
+            />
+            <rect
+              x="29"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.9"
+            />
+            <rect
+              x="43"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="1"
+            />
+            <rect
+              x="55"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.8"
+            />
+            <rect
+              x="67"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.7"
+            />
+            <rect
+              x="79"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.9"
+            />
+            <rect
+              x="5"
+              y="55"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.6"
+            />
+            <rect
+              x="29"
+              y="55"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.8"
+            />
+            <rect
+              x="55"
+              y="55"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.9"
+            />
+            <rect
+              x="79"
+              y="55"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.7"
+            />
+            <rect
+              x="43"
+              y="67"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.8"
+            />
+            <rect
+              x="67"
+              y="67"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.9"
+            />
+            <rect
+              x="55"
+              y="79"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.7"
+            />
+            <rect
+              x="79"
+              y="79"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.8"
+            />
+            <rect
+              x="43"
+              y="79"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.6"
+            />
+            <rect
+              x="67"
+              y="79"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.9"
+            />
+            <rect
+              x="79"
+              y="67"
+              width="8"
+              height="8"
+              rx="2"
+              fill="url(#qrGrad)"
+              opacity="0.7"
+            />
+            <defs>
+              <linearGradient id="qrGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color: #ff6b8a" />
+                <stop offset="100%" style="stop-color: #ffd166" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
         <h1 class="welcome-title">QR Generator</h1>
         <p class="welcome-subtitle">
           Ubah link jadi QR Code dalam hitungan detik
@@ -32,45 +317,60 @@
           Mulai Sekarang
         </button>
         <p class="welcome-skip">
-          atau tunggu <span id="welcome-countdown">3</span> detik
+          atau tunggu <span id="welcome-countdown">5</span> detik
         </p>
       </div>
     </div>
 
+    <!-- Main App -->
     <div id="app-wrapper" class="app-wrapper app-hidden">
       <main class="container" role="main">
-        <div class="card" aria-label="QR Code Generator">
-          <h1 class="title">QR Code Generator</h1>
+        <!-- Hero Section -->
+        <div class="hero">
+          <div class="hero-badge">✦ QR Generator</div>
+          <h1 class="title">
+            Turn any link into<br />a <span class="title-accent">QR Code</span>
+          </h1>
+          <p class="subtitle">Paste your URL below and generate instantly</p>
+        </div>
 
-          <div class="form-group">
-            <label for="qr-input" class="form-label">URL</label>
+        <!-- Input Card -->
+        <div class="input-card">
+          <div class="input-wrapper">
+            <span class="input-icon">🔗</span>
             <input
               type="text"
               id="qr-input"
               class="form-input"
               placeholder="https://example.com"
-              aria-label="Enter a URL to generate QR code"
+              aria-label="Enter URL to generate QR code"
               autocomplete="off"
               spellcheck="false"
             />
           </div>
+          <div
+            id="error-msg"
+            class="error-msg hidden"
+            role="alert"
+            aria-live="polite"
+          ></div>
 
-          <div class="form-group">
-            <label for="qr-size" class="form-label">Size</label>
-            <select
-              id="qr-size"
-              class="form-select"
-              aria-label="Select QR code size"
-            >
-              <option value="128">Small (128×128)</option>
-              <option value="256" selected>Medium (256×256)</option>
-              <option value="512">Large (512×512)</option>
-            </select>
-          </div>
-
-          <div class="color-row">
-            <div class="color-group">
-              <label for="fg-color" class="form-label">Foreground</label>
+          <!-- Options Row -->
+          <div class="options-row">
+            <div class="option-group">
+              <label for="qr-size" class="option-label">Size</label>
+              <select
+                id="qr-size"
+                class="form-select"
+                aria-label="Select QR code size"
+              >
+                <option value="128">Small</option>
+                <option value="256" selected>Medium</option>
+                <option value="512">Large</option>
+              </select>
+            </div>
+            <div class="option-group">
+              <label for="fg-color" class="option-label">QR Color</label>
               <input
                 type="color"
                 id="fg-color"
@@ -79,8 +379,8 @@
                 class="color-picker"
               />
             </div>
-            <div class="color-group">
-              <label for="bg-color" class="form-label">Background</label>
+            <div class="option-group">
+              <label for="bg-color" class="option-label">Background</label>
               <input
                 type="color"
                 id="bg-color"
@@ -91,14 +391,8 @@
             </div>
           </div>
 
-          <div
-            id="error-msg"
-            class="error-msg hidden"
-            role="alert"
-            aria-live="polite"
-          ></div>
-
-          <div class="btn-row">
+          <!-- Action Buttons -->
+          <div class="btn-group">
             <button
               id="generate-btn"
               class="btn btn-primary"
@@ -107,44 +401,43 @@
               <span class="btn-text">Generate QR</span>
               <span class="btn-spinner" aria-hidden="true"></span>
             </button>
-            <button
-              id="clear-btn"
-              class="btn btn-ghost"
-              aria-label="Clear input and QR code"
-            >
+            <button id="clear-btn" class="btn btn-ghost" aria-label="Clear">
               Clear
             </button>
           </div>
+        </div>
 
-          <div
-            id="qr-container"
-            class="qr-container"
-            aria-label="Generated QR code"
-            aria-live="polite"
-          ></div>
+        <!-- QR Result -->
+        <div
+          id="qr-container"
+          class="qr-container"
+          aria-label="Generated QR code"
+          aria-live="polite"
+        ></div>
 
-          <div class="action-row">
-            <button
-              id="download-btn"
-              class="btn btn-secondary hidden"
-              aria-label="Download QR code as PNG"
-            >
-              ⬇ Download
-            </button>
-            <button
-              id="share-btn"
-              class="btn btn-secondary hidden"
-              aria-label="Share QR code"
-            >
-              ↗ Share
-            </button>
-          </div>
+        <!-- Result Actions -->
+        <div class="action-row">
+          <button
+            id="download-btn"
+            class="btn btn-secondary hidden"
+            aria-label="Download QR code as PNG"
+          >
+            ⬇ Download
+          </button>
+          <button
+            id="share-btn"
+            class="btn btn-secondary hidden"
+            aria-label="Share QR code"
+          >
+            ↗ Share
+          </button>
+        </div>
 
-          <div class="history-section">
-            <h2 class="history-title">Recent History</h2>
-            <div id="history-list" class="history-list">
-              <p class="history-empty">No history yet.</p>
-            </div>
+        <!-- History -->
+        <div class="history-section">
+          <h2 class="history-title">Recent</h2>
+          <div id="history-list" class="history-list">
+            <p class="history-empty">No history yet.</p>
           </div>
         </div>
       </main>
@@ -153,6 +446,7 @@
     <div id="toast" class="toast" aria-live="polite" role="status"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script type="module" src="firebase.js"></script>
     <script type="module" src="script.js"></script>
   </body>
 </html>
