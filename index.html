@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>QR Generator</title>
+    <title>Qraft</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap"
@@ -269,13 +270,8 @@
             />
           </svg>
         </div>
-        <h1 class="welcome-title">QR Generator</h1>
-        <p class="welcome-subtitle">Turn any link into a QR Code in seconds</p>
-        <div class="welcome-features">
-          <div class="welcome-feature-item">⚡ Instant Generate</div>
-          <div class="welcome-feature-item">💾 Save to Gallery</div>
-          <div class="welcome-feature-item">📤 Share Directly</div>
-        </div>
+        <h1 class="welcome-title">Qraft</h1>
+        <p class="welcome-subtitle">Create. Scan. Connect.</p>
         <button
           id="welcome-btn"
           class="btn welcome-btn"
@@ -563,14 +559,13 @@
                 opacity="0.7"
               /></svg
           ></span>
-          <span class="brand-name">QR Generator</span>
+          <span class="brand-name">Qraft</span>
         </div>
       </header>
 
       <main class="container" role="main">
-        <!-- Left: Form -->
-        <div class="card card-form">
-          <div class="card-label">INPUT URL</div>
+        <div class="card">
+          <div class="card-label">QRAFT</div>
 
           <div class="form-group">
             <label for="qr-input" class="form-label">Link</label>
@@ -597,8 +592,8 @@
               <label for="qr-size" class="form-label">Size</label>
               <select id="qr-size" class="form-select">
                 <option value="128">Small</option>
-                <option value="256" selected>Medium</option>
-                <option value="512">Large</option>
+                <option value="200" selected>Medium</option>
+                <option value="300">Large</option>
               </select>
             </div>
             <div class="form-group">
@@ -628,16 +623,16 @@
             </button>
             <button id="clear-btn" class="btn btn-ghost">Clear</button>
           </div>
-        </div>
 
-        <!-- Right: Preview -->
-        <div class="card card-preview">
-          <div class="card-label">PREVIEW</div>
+          <div class="card-divider"></div>
 
           <div id="qr-container" class="qr-container" aria-live="polite">
-            <div class="qr-placeholder">
-              <span class="qr-placeholder-icon">&#128241;</span>
-              <p class="qr-placeholder-text">Your QR code will appear here</p>
+            <div id="qr-placeholder" class="qr-placeholder">
+              <img
+                src="assets/logo.png"
+                alt="Qraft"
+                class="qr-placeholder-logo"
+              />
             </div>
           </div>
 
@@ -649,9 +644,6 @@
               &#8599; Share
             </button>
           </div>
-
-          <div class="card-divider"></div>
-          <p class="card-hint">Generate a QR code from any link</p>
         </div>
       </main>
 
@@ -669,7 +661,6 @@
     <div id="toast" class="toast" aria-live="polite" role="status"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script type="module" src="firebase.js"></script>
     <script type="module" src="script.js"></script>
   </body>
 </html>

@@ -68,6 +68,29 @@ function clearError() {
   errorMsg.classList.add("hidden");
 }
 
+function describeError(err) {
+  const code = String(err?.code || "");
+  if (code.includes("permission-denied")) {
+    return "Permission denied. Check your Firestore rules.";
+  }
+  if (code.includes("unavailable")) {
+    return "Network unavailable. Check your connection.";
+  }
+  if (code.includes("not-found")) {
+    return "This item no longer exists.";
+  }
+  return err?.message || "Unknown error";
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 // ===== Toast =====
 function showToast(message) {
   if (toastTimer) {
@@ -110,7 +133,9 @@ function generateQR() {
   const bg = bgColor.value || "#ffffff";
 
   // Clear previous QR
-  qrContainer.innerHTML = "";
+  qrContainer.innerHTML =
+    '<div id="qr-placeholder" class="qr-placeholder hidden"><img src="assets/logo.png" alt="Qraft" class="qr-placeholder-logo" /></div>';
+  document.getElementById("qr-placeholder")?.classList.add("hidden");
 
   // Loading state
   generateBtn.classList.add("loading");
@@ -178,9 +203,12 @@ function generateQR() {
       qr_size: size,
       has_custom_color: fg !== "#000000" || bg !== "#ffffff",
     });
-    saveQRHistory({ text, size, fgColor: fg, bgColor: bg }).then(() =>
-      loadHistory(),
-    );
+    saveQRHistory({ text, size, fgColor: fg, bgColor: bg })
+      .then(() => loadHistory())
+      .catch((err) => {
+        console.error("Error saving QR history:", err);
+        showToast("QR generated, but history could not be saved.");
+      });
   }, 100);
 }
 
@@ -250,7 +278,9 @@ async function shareQR() {
 // ===== Clear / Reset =====
 function clearAll() {
   qrInput.value = "";
-  qrContainer.innerHTML = "";
+  qrContainer.innerHTML =
+    '<div id="qr-placeholder" class="qr-placeholder"><img src="assets/logo.png" alt="Qraft" class="qr-placeholder-logo" /></div>';
+  document.getElementById("qr-placeholder")?.classList.remove("hidden");
   downloadBtn.classList.add("hidden");
   shareBtn.classList.add("hidden");
   clearError();
@@ -261,27 +291,41 @@ function clearAll() {
 // ===== History =====
 async function loadHistory() {
   const historyList = document.getElementById("history-list");
-  const items = await getQRHistory(10);
+
+  let items;
+  try {
+    items = await getQRHistory(10);
+  } catch (err) {
+    console.error("Error fetching QR history:", err);
+    historyList.innerHTML =
+      '<p class="history-empty">Could not load history.</p>';
+    showToast("Could not load history: " + describeError(err));
+    return;
+  }
+
   if (items.length === 0) {
     historyList.innerHTML = '<p class="history-empty">No history yet.</p>';
     return;
   }
+
   historyList.innerHTML = items
     .map((item) => {
+      const text = escapeHtml(item.text);
       const truncated =
-        item.text.length > 30 ? item.text.slice(0, 30) + "..." : item.text;
+        item.text.length > 30 ? escapeHtml(item.text.slice(0, 30)) + "..." : text;
       const date = item.createdAt?.toDate
         ? item.createdAt.toDate()
         : new Date(item.createdAt);
       const formatted = `${String(date.getDate()).padStart(2, "0")}/${String(date.getMonth() + 1).padStart(2, "0")}/${date.getFullYear()} ${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
-      return `<div class="history-item" data-id="${item.id}">
-      <span class="history-item-text" title="${item.text}">${truncated}</span>
-      <span class="history-item-meta">${item.size}px &bull; ${formatted}</span>
-      <button class="history-reuse-btn" data-text="${item.text.replace(/"/g, "&quot;")}" data-size="${item.size}" data-fg="${item.fgColor}" data-bg="${item.bgColor}">&#x21BA; Reuse</button>
-      <button class="history-delete-btn" data-id="${item.id}" aria-label="Hapus history">🗑</button>
+      return `<div class="history-item" data-id="${escapeHtml(item.id)}">
+      <span class="history-item-text" title="${text}">${truncated}</span>
+      <span class="history-item-meta">${escapeHtml(item.size)}px &bull; ${formatted}</span>
+      <button type="button" class="history-reuse-btn" data-text="${text}" data-size="${escapeHtml(item.size)}" data-fg="${escapeHtml(item.fgColor || "#000000")}" data-bg="${escapeHtml(item.bgColor || "#ffffff")}">&#x21BA; Reuse</button>
+      <button type="button" class="history-delete-btn" data-id="${escapeHtml(item.id)}" aria-label="Delete history">&#128465;</button>
     </div>`;
     })
     .join("");
+
   // Attach reuse button listeners
   historyList.querySelectorAll(".history-reuse-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -296,8 +340,22 @@ async function loadHistory() {
   // Attach delete button listeners
   historyList.querySelectorAll(".history-delete-btn").forEach((btn) => {
     btn.addEventListener("click", async () => {
-      await deleteQRHistory(btn.dataset.id);
-      await loadHistory();
+      const id = btn.dataset.id;
+      if (!id) {
+        showToast("Could not delete this item.");
+        return;
+      }
+
+      btn.disabled = true;
+      try {
+        await deleteQRHistory(id);
+        await loadHistory();
+        showToast("History deleted.");
+      } catch (err) {
+        console.error("Error deleting QR history:", err);
+        btn.disabled = false;
+        showToast("Delete failed: " + describeError(err));
+      }
     });
   });
 }
@@ -324,4 +382,4 @@ qrInput.addEventListener("keydown", (e) => {
 });
 
 // Load history on page start
-loadHistory();
+loadHistory().catch((err) => console.error("Error loading QR history:", err));
