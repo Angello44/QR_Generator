@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qraft</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="style.css?v=3" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Welcome/Splash Screen -->
+    <div id="welcome-screen" class="welcome-screen">
+      <div class="splash-bg"></div>
+      <div class="splash-content">
+        <div class="splash-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 100 100"
+            width="90"
+            height="90"
+            aria-hidden="true"
+          >
+            <rect
+              x="5"
+              y="5"
+              width="30"
+              height="30"
+              rx="4"
+              fill="none"
+              stroke="#00c896"
+              stroke-width="4"
+            />
+            <rect x="13" y="13" width="14" height="14" rx="2" fill="#00c896" />
+            <rect
+              x="65"
+              y="5"
+              width="30"
+              height="30"
+              rx="4"
+              fill="none"
+              stroke="#00c896"
+              stroke-width="4"
+            />
+            <rect x="73" y="13" width="14" height="14" rx="2" fill="#00c896" />
+            <rect
+              x="5"
+              y="65"
+              width="30"
+              height="30"
+              rx="4"
+              fill="none"
+              stroke="#00c896"
+              stroke-width="4"
+            />
+            <rect x="13" y="73" width="14" height="14" rx="2" fill="#00c896" />
+            <rect
+              x="43"
+              y="5"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.9"
+            />
+            <rect
+              x="55"
+              y="5"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.7"
+            />
+            <rect
+              x="43"
+              y="17"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.8"
+            />
+            <rect
+              x="43"
+              y="29"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.9"
+            />
+            <rect
+              x="55"
+              y="29"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.6"
+            />
+            <rect
+              x="5"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.8"
+            />
+            <rect
+              x="17"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.7"
+            />
+            <rect
+              x="29"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.9"
+            />
+            <rect
+              x="43"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="1"
+            />
+            <rect
+              x="55"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.8"
+            />
+            <rect
+              x="67"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.7"
+            />
+            <rect
+              x="79"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.9"
+            />
+            <rect
+              x="5"
+              y="55"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.6"
+            />
+            <rect
+              x="29"
+              y="55"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.8"
+            />
+            <rect
+              x="55"
+              y="55"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.9"
+            />
+            <rect
+              x="79"
+              y="55"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.7"
+            />
+            <rect
+              x="43"
+              y="67"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.8"
+            />
+            <rect
+              x="67"
+              y="67"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.9"
+            />
+            <rect
+              x="55"
+              y="79"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.7"
+            />
+            <rect
+              x="79"
+              y="79"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.8"
+            />
+            <rect
+              x="43"
+              y="79"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.6"
+            />
+            <rect
+              x="67"
+              y="79"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.9"
+            />
+            <rect
+              x="79"
+              y="67"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#00c896"
+              opacity="0.7"
+            />
+          </svg>
+        </div>
+        <h1 class="splash-title">Qraft</h1>
+        <p class="splash-tagline">Create. Scan. Connect.</p>
+        <p class="splash-sub">Turn any link into a QR code instantly</p>
+        <button id="welcome-btn" class="splash-btn">Get Started</button>
+        <p class="splash-skip">
+          or wait <span id="welcome-countdown">3</span> seconds
+        </p>
+      </div>
+    </div>
+    <!-- App -->
+    <div id="app-wrapper" class="app-wrapper app-hidden">
+      <header class="app-header">
+        <div class="header-left">
+          <span class="header-greeting">Welcome</span>
+          <span class="header-name">Qraft</span>
+        </div>
+        <div class="header-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 100 100"
+            width="28"
+            height="28"
+            aria-hidden="true"
+          >
+            <rect
+              x="5"
+              y="5"
+              width="30"
+              height="30"
+              rx="4"
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="4"
+            />
+            <rect x="13" y="13" width="14" height="14" rx="2" fill="#ffffff" />
+            <rect
+              x="65"
+              y="5"
+              width="30"
+              height="30"
+              rx="4"
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="4"
+            />
+            <rect x="73" y="13" width="14" height="14" rx="2" fill="#ffffff" />
+            <rect
+              x="5"
+              y="65"
+              width="30"
+              height="30"
+              rx="4"
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="4"
+            />
+            <rect x="13" y="73" width="14" height="14" rx="2" fill="#ffffff" />
+            <rect
+              x="43"
+              y="5"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.9"
+            />
+            <rect
+              x="55"
+              y="5"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.7"
+            />
+            <rect
+              x="43"
+              y="17"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.8"
+            />
+            <rect
+              x="43"
+              y="29"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.9"
+            />
+            <rect
+              x="55"
+              y="29"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.6"
+            />
+            <rect
+              x="5"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.8"
+            />
+            <rect
+              x="17"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.7"
+            />
+            <rect
+              x="29"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.9"
+            />
+            <rect
+              x="43"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="1"
+            />
+            <rect
+              x="55"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.8"
+            />
+            <rect
+              x="67"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.7"
+            />
+            <rect
+              x="79"
+              y="43"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.9"
+            />
+            <rect
+              x="5"
+              y="55"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.6"
+            />
+            <rect
+              x="29"
+              y="55"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.8"
+            />
+            <rect
+              x="55"
+              y="55"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.9"
+            />
+            <rect
+              x="79"
+              y="55"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.7"
+            />
+            <rect
+              x="43"
+              y="67"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.8"
+            />
+            <rect
+              x="67"
+              y="67"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.9"
+            />
+            <rect
+              x="55"
+              y="79"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.7"
+            />
+            <rect
+              x="79"
+              y="79"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.8"
+            />
+            <rect
+              x="43"
+              y="79"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.6"
+            />
+            <rect
+              x="67"
+              y="79"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.9"
+            />
+            <rect
+              x="79"
+              y="67"
+              width="8"
+              height="8"
+              rx="2"
+              fill="#ffffff"
+              opacity="0.7"
+            />
+          </svg>
+        </div>
+      </header>
+      <main class="main-content">
+        <!-- Generate Tab -->
+        <div id="tab-generate" class="tab-panel active">
+          <div class="input-card">
+            <p class="input-label">Enter URL</p>
+            <div class="input-wrapper">
+              <span class="input-prefix">🔗</span>
+              <input
+                type="text"
+                id="qr-input"
+                class="form-input"
+                placeholder="https://example.com"
+                autocomplete="off"
+                spellcheck="false"
+                aria-label="Enter URL"
+              />
+            </div>
+            <div
+              id="error-msg"
+              class="error-msg hidden"
+              role="alert"
+              aria-live="polite"
+            ></div>
+          </div>
+          <div class="options-card">
+            <div class="option-row">
+              <div class="option-group">
+                <label for="qr-size" class="option-label">Size</label>
+                <select id="qr-size" class="option-select">
+                  <option value="128">Small</option>
+                  <option value="200" selected>Medium</option>
+                  <option value="300">Large</option>
+                </select>
+              </div>
+              <div class="option-group">
+                <label for="fg-color" class="option-label">QR Color</label>
+                <input
+                  type="color"
+                  id="fg-color"
+                  value="#000000"
+                  class="color-picker"
+                />
+              </div>
+              <div class="option-group">
+                <label for="bg-color" class="option-label">BG Color</label>
+                <input
+                  type="color"
+                  id="bg-color"
+                  value="#ffffff"
+                  class="color-picker"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="preview-card">
+            <div id="qr-container" class="qr-container" aria-live="polite">
+              <div id="qr-placeholder" class="qr-placeholder">
+                <img
+                  src="assets/logo.png"
+                  alt="Qraft"
+                  class="qr-placeholder-logo"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="action-buttons">
+            <button id="download-btn" class="action-btn hidden">
+              <span class="action-btn-icon">⬇</span>
+              <span>Download</span>
+            </button>
+            <button id="share-btn" class="action-btn hidden">
+              <span class="action-btn-icon">↗</span>
+              <span>Share</span>
+            </button>
+          </div>
+          <div class="main-actions">
+            <button id="generate-btn" class="generate-btn">
+              <span class="btn-text">Generate QR</span>
+              <span class="btn-spinner" aria-hidden="true"></span>
+            </button>
+            <button id="clear-btn" class="clear-btn">Clear</button>
+          </div>
+        </div>
+        <!-- History Tab -->
+        <div id="tab-history" class="tab-panel">
+          <div class="history-header">
+            <h2 class="history-title">Recent QR Codes</h2>
+          </div>
+          <div id="history-list" class="history-list">
+            <div class="history-empty-state">
+              <p class="history-empty">No history yet</p>
+            </div>
+          </div>
+        </div>
+        <div id="tab-scan" class="tab-panel">
+          <div class="scan-header">
+            <h2 class="scan-title">Scan QR Code</h2>
+            <p class="scan-subtitle">Point your camera at a QR code</p>
+          </div>
+          <div class="scan-card">
+            <div class="camera-container" id="camera-container">
+              <video
+                id="camera-video"
+                class="camera-video"
+                playsinline
+                autoplay
+                muted
+              ></video>
+              <canvas id="camera-canvas" class="camera-canvas"></canvas>
+              <div class="scan-overlay">
+                <div class="scan-frame">
+                  <div class="scan-line"></div>
+                </div>
+              </div>
+              <div class="camera-placeholder" id="camera-placeholder">
+                <span class="camera-placeholder-icon">📷</span>
+                <p class="camera-placeholder-text">Camera not active</p>
+              </div>
+            </div>
+            <div class="scan-actions">
+              <button id="start-scan-btn" class="generate-btn">
+                Start Camera
+              </button>
+              <button id="stop-scan-btn" class="clear-btn hidden">Stop</button>
+            </div>
+          </div>
+          <div id="scan-result" class="scan-result hidden">
+            <div class="scan-result-label">Scanned Result</div>
+            <p id="scan-result-text" class="scan-result-text"></p>
+            <div class="scan-result-actions">
+              <button id="scan-open-btn" class="action-btn">
+                <span class="action-btn-icon">🔗</span>
+                <span>Open URL</span>
+              </button>
+              <button id="scan-copy-btn" class="action-btn">
+                <span class="action-btn-icon">📋</span>
+                <span>Copy</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!-- Bottom Navigation -->
+      <nav class="bottom-nav">
+        <button class="nav-btn active" data-tab="generate">
+          <span class="nav-label">Generate</span>
+        </button>
+        <button class="nav-btn" data-tab="scan">
+          <span class="nav-label">Scan</span>
+        </button>
+        <button class="nav-btn" data-tab="history">
+          <span class="nav-label">History</span>
+        </button>
+      </nav>
+    </div>
+    <div id="toast" class="toast" aria-live="polite" role="status"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+    <script type="module" src="script.js?v=3"></script>
+  </body>
+</html>

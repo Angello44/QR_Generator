@@ -1,0 +1,18 @@
+# Kiro internal files
+.agents/
+.kiro/
+
+# Python virtual environment
+.venv/
+venv/
+__pycache__/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+
+# Presentation (local only)
+presentation.html
